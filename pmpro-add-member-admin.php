@@ -1,26 +1,25 @@
 <?php
-/**
- * Plugin Name: Paid Memberships Pro - Add Member Admin
- * Plugin URI: https://www.paidmembershipspro.com/add-ons/add-member-admin-add-on/
- * Description: Allow admins to add members in the WP dashboard.
- * Version: .3.1
- * Author: Stranger Studios
- * Author URI: https://www.strangerstudios.com
- * Text Domain: pmpro-add-member-admin
- * Domain Path: /languages
- */
+/*
+Plugin Name: Paid Memberships Pro - Add Member Admin
+Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-add-member-admin/
+Description: Allow admins to add members in the WP dashboard.
+Version: .4
+Author: Stranger Studios
+Author URI: http://www.strangerstudios.com
+Text Domain: pmpro-add-member-admin
+Domain Path: /languages
+*/
 
+/*
+	* Add "Add Member" link under Memberships.
+	* Form with fields, username, email (find user), password (random), name, level, expiration (auto), credit card
+	* Add user, apply level, save order
+	* Filters for adding additional fields.
+*/
 
-/**
- * Add "Add Member" link under Memberships.
- * Form with fields, username, email (find user), password (random), name, level, expiration (auto), credit card
- * Add user, apply level, save order
- * Filters for adding additional fields.
- */
-
-/**
- * Add Menu Item
- */
+/*
+	Add Menu Item
+*/
 function pmproama_pmpro_add_pages() {
 	$cap = apply_filters( 'pmpro_add_member_cap', 'edit_users' );
 
@@ -32,9 +31,9 @@ function pmpro_addmember() {
 	require_once( dirname( __FILE__ ) . '/adminpages/addmember.php' );
 }
 
-/**
- * Admin Bar
- */
+/*
+	Admin Bar
+*/
 function pmproama_admin_bar_menu() {
 	global $wp_admin_bar;
 
@@ -58,9 +57,9 @@ function pmproama_admin_bar_menu() {
 }
 add_action( 'admin_bar_menu', 'pmproama_admin_bar_menu', 1001 );
 
-/**
- * Function to add links to the plugin action links
- */
+/*
+Function to add links to the plugin action links
+*/
 function pmproama_add_action_links( $links ) {
 	$cap = apply_filters( 'pmpro_add_member_cap', 'edit_users' );
 	if ( current_user_can( $cap ) ) {
@@ -72,9 +71,9 @@ function pmproama_add_action_links( $links ) {
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'pmproama_add_action_links' );
 
-/**
- *  Function to add links to the plugin row meta
- */
+/*
+Function to add links to the plugin row meta
+*/
 function pmproama_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'pmpro-add-member-admin.php' ) !== false ) {
 		$new_links = array(
@@ -86,9 +85,9 @@ function pmproama_plugin_row_meta( $links, $file ) {
 }
 add_filter( 'plugin_row_meta', 'pmproama_plugin_row_meta', 10, 2 );
 
-/**
- * Add action links
- */
+/*
+	Add action links
+*/
 function pmproama_action_links( $actions, $user ) {
 	$cap = apply_filters( 'pmpro_add_member_cap', 'edit_users' );
 
